@@ -17,3 +17,5 @@
 //= require turbolink
 //= require bootstrap
 //= require_tree .
+
+//require_tree includes all files in teh directory.
