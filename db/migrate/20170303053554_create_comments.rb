@@ -3,7 +3,7 @@ class CreateComments < ActiveRecord::Migration[5.0]
     create_table :comments do |t|
       t.text :body
       #stores the foreign key of the object passed in
-      t.references :post, foreign_key: true
+      t.references :post, index: true,  foreign_key: true
 
       t.timestamps
     end
