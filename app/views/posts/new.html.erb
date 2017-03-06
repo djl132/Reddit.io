@@ -1,2 +1,35 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<h1>New Post</h1>
+
+<!-- There are a few things to note here:
+
+@article is the actual object being edited.
+There is a single hash of options. Routing options are passed in the :url hash, HTML options are passed in the :html hash. Also you can provide a :namespace option for your form to ensure uniqueness of id attributes on form elements. The namespace attribute will be prefixed with underscore on the generated HTML id.
+The form_for method yields a form builder object (the f variable).
+Methods to create form controls are called on the form builder object f. -->
+<div class="row">
+  <div class="col-md-4">
+      <p>Guidelines for posts</p>
+      <ul>
+          <li>Be specific about your post.</li>
+          <li>Use hashtags optimally.</li>
+          <li>Positive vibes only. </li>
+      </ul>
+  </div>
+  <div class="col-md-8">
+    <!--  SAVES INTO PARAMS??????-->
+    <%= form_for @post do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control', placeholder: "Enter post title" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, rows:8, class: 'form-control', placeholder: "Enter post body" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Save", class: "btn btn-success"%>
+    </div>
+    <%end%>
+
+
+</div>

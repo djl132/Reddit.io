@@ -21,7 +21,9 @@ module Bloccit
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.active_record.raise_in_transactional_callbacks = true
+
+    # SO I DON'T NEED THSI??????? WHAT EXACTLY DO THESE LINES DO?
+    # config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths << File.join(config.root, "lib")
 
   end
