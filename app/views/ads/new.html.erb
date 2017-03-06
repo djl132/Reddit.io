@@ -1,0 +1,32 @@
+<h1>CREATE AD</h1>
+
+<div class="row">
+  <div class="col-md-4">
+      <p>Guidelines for ADS</p>
+      <ul>
+          <li>Be specific about your post.</li>
+          <li>Use hashtags optimally.</li>
+          <li>Positive vibes only. </li>
+      </ul>
+  </div>
+  <div class="col-md-8">
+    <!--  SAVES AD  INTO PARAMS??????-->
+    <%= form_for @ad do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control', placeholder: "Enter ad title" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :body %>
+        <%= f.text_area :body, rows:8, class: 'form-control', placeholder: "Enter ad body" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :price %>
+        <%= f.number_field :price, class: 'form-control', placeholder: "Enter price" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Save", class: "btn btn-success"%>
+      </div>
+    <%end%>
+
+</div>
