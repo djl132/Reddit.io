@@ -1,5 +1,8 @@
 require 'random_data'
 
+
+
+#SEED POSTS AND COMMENTS RESOURCE
 50.times do
   Post.create!(
   title: RandomData.random_sentence,
@@ -18,4 +21,4 @@ end
 
 puts "Seed finished"
  puts "#{Post.count} posts created"
- puts "#{Comment.count} comments created" 
+ puts "#{Comment.count} comments created"
