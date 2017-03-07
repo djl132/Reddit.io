@@ -4,7 +4,7 @@ RSpec.describe PostsController, type: :controller do
 
   let(:my_post){Post.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph)}
 
-  describe "GET #index" do
+  describe "GET index" do
     it "returns http success" do
       get :index
       expect(response).to have_http_status(:success)
@@ -20,11 +20,10 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
+  describe "GET show" do
     it "returns http success" do
       get :show, {id: my_post.id}
 
-      # DOES THIS MEAN THAT IT IS A VALID ROUTE? WHAT EXACTLY IS THIS CHECKING?
       expect(response).to have_http_status(:success)
     end
 
@@ -36,11 +35,11 @@ RSpec.describe PostsController, type: :controller do
     it "assigns my_post to @post" do
       # call get action passing in postid
       get :show, {id: my_post.id}
-      expect(assigns(:p  ost)).to eq(my_post)
+      expect(assigns(:post)).to eq(my_post)
     end
   end
 
-  describe "GET #new" do
+  describe "GET new" do
     it "returns http success" do
       get :new
       expect(response).to have_http_status(:success)
@@ -59,7 +58,6 @@ RSpec.describe PostsController, type: :controller do
 
   describe "POST create" do
     it "increases the number of posts by 1" do
-      # creating a post - does this call the create action and pass in this post?
       expect{post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Post, :count).by(1)
     end
 
@@ -74,14 +72,51 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  #
-  # describe "GET #edit" do
-  #   it "returns http success" do
-  #     get :edit
-  #     expect(response).to have_http_status(:success)
-  #   end
-  #
-  #
-  # end
+  describe "GET edit" do
+    it "returns http success" do
+      get :edit, {id: my_post.id}
+      expect(response).to have_http_status(:success)
+    end
 
+    it "renders edit view" do
+      get :edit, {id: my_post.id}
+      expect(response).to render_template(:edit)
+    end
+
+    it "assigns editeable post to @post" do
+      get :edit, {id: my_post.id}
+
+      #test if successfully assigsn @retrieved post
+      post_instance = assigns(:post)
+
+      expect(post_instance.id).to eq(my_post.id)
+      expect(post_instance.title).to eq(my_post.title)
+      expect(post_instance.body).to eq(my_post.body)
+    end
+  end
+
+  describe "PUT update" do
+    it "updates post with expected attributes" do
+      new_title = RandomData.random_sentence
+      new_body  = RandomData.random_paragraph
+
+# updatea action with id and post
+      put :update, id: my_post.id, post: {title: new_title, body: new_body}
+
+      updated_post = assigns(:post)
+
+      expect(updated_post.id).to eq my_post.id
+      expect(updated_post.title).to eq new_title
+      expect(updated_post.body).to eq new_body
+    end
+
+    it "redirects to updated post" do
+      new_title = RandomData.random_sentence
+      new_body  = RandomData.random_paragraph
+
+# updatea action with id and post
+      put :update, id: my_post.id, post: {title: new_title, body: new_body}
+      expect(response).to redirect_to(my_post)
+    end
+  end
 end
