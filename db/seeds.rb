@@ -1,10 +1,21 @@
 require 'random_data'
 
 
+# Create Topics
+15.times do
+  Topic.create!{
+    name: RandomData.random_sentence,
+    description: RandomData.random_paragraph
+  }
+end
+
+topics = Topic.all
+
 
 #SEED POSTS AND COMMENTS RESOURCE
 50.times do
   Post.create!(
+  topic: topics.sample,
   title: RandomData.random_sentence,
   body: RandomData.random_paragraph
   )
@@ -20,5 +31,6 @@ posts = Post.all
 end
 
 puts "Seed finished"
+puts "#{Topic.count} topics created"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"

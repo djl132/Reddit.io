@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :posts
+# CREATE ROUTES FOR CRUD OEPRATIONS ON A RESOURCE
+  resources :topics do
+
+    resources :posts, except: [:index]
+
+  end
 
   get 'about' => "welcome#about"
 

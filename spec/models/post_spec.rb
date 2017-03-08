@@ -6,8 +6,7 @@ RSpec.describe Post, type: :model do
   let(:title) { RandomData.random_sentence }
   let(:body) { RandomData.random_paragraph }
   let(:topic) {Topic.create!(name: name, description: description)}
-
-
+  
   # THIS IS BUILT IN RIGHT?
   let(:post) {topic.posts.create!(title:title, body: body)}
 
@@ -20,6 +19,6 @@ RSpec.describe Post, type: :model do
   end
 
 
-  
+
 
 end

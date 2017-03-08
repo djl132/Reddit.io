@@ -17,7 +17,7 @@ Methods to create form controls are called on the form builder object f. -->
   </div>
   <div class="col-md-8">
     <!--  SAVES INTO PARAMS??????-->
-    <%= form_for @post do |f| %>
+    <%= form_for [@topic, @post] do |f| %>
     <div class="form-group">
       <%= f.label :title %>
       <%= f.text_field :title, class: 'form-control', placeholder: "Enter post title" %>
