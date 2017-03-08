@@ -12,6 +12,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new
+    @id =  @topic.id
     @topic.name = params[:topic][:name]
     @topic.description = params[:topic][:description]
     @topic.public = params[:topic][:public]
@@ -20,7 +21,7 @@ class TopicsController < ApplicationController
     if @topic.save
       redirect_to @topic, notice: "Topic was saved successfully."
     else
-      flash.now[:alert] = "Error. Try again."
+      flash.now[:alert] = "Error. #{@id} Try again."
       render :new
     end
 

@@ -1,0 +1,45 @@
+<h1>New Sponsored Post</h1>
+
+<!-- There are a few things to note here:
+
+@article is the actual object being edited.
+There is a single hash of options. Routing options are passed in the :url hash, HTML options are passed in the :html hash. Also you can provide a :namespace option for your form to ensure uniqueness of id attributes on form elements. The namespace attribute will be prefixed with underscore on the generated HTML id.
+The form_for method yields a form builder object (the f variable).
+Methods to create form controls are called on the form builder object f. -->
+<div class="row">
+  <div class="col-md-4">
+      <p>Guidelines for posts</p>
+      <ul>
+          <li>Be specific about your post.</li>
+          <li>Use hashtags optimally.</li>
+          <li>Positive vibes only. </li>
+      </ul>
+  </div>
+  <div class="col-md-8">
+    <!--  DOES 3 things
+  1. creates a form that binds informatoin about a resource(either new or old) into PARAMS in the form of a hash object
+  2. submits the POST DATA in the params by triggering the CREATE ACTION ROUTE-->
+
+  <!--  thus, the spost objct just acts as a holder fo  post data ot pass into the create action via params
+then, submits it to create ApplicationController.
+HOW DOES PARAMS KNOW WHAT TO NAME THE PARAMS HASH OBJECT?-->
+    <%= form_for [@topic, @spost] do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control', placeholder: "Enter post title" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, rows:8, class: 'form-control', placeholder: "Enter post body" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :price %>
+      <%= f.number_field :price %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Save", class: "btn btn-success"%>
+    </div>
+    <%end%>
+  </div>
+
+</div>
