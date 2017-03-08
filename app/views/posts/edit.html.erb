@@ -1,6 +1,7 @@
 <h1>Edit Post</h1>
 
 <div class="row">
+
   <div class="col-md-4">
     <p>Guidelines for topics:</p>
     <ul>
@@ -9,20 +10,23 @@
       <li>Smile when you type.</li>
     </ul>
   </div>
-  <div class="col-md-8">
-    <%= form_for [@post.topic, @post] do |f| %>
-      <div class="form-group">
-        <%= f.label :title %>
-        <%= f.text_field :title, class: 'form-control', placeholder: "Enter post title" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :body %>
-        <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter post body" %>
-      </div>
-      <div class="form-group">
-        <%= f.submit "Save", class: 'btn btn-success' %>
-      </div>
-  <% end %>
+
+   <div class="col-md-8">
+     <!-- here we specify the resource objects as elements
+      to the create action route of the form -->
+     <%= render partial: 'form', locals: { topic: @post.topic, post: @post } %>
+  </div>
+
 </div>
 
-  </div>
+
+<!--
+
+Q - WAT DOES THIS MEAN?
+
+Although the partial does have acce
+ss to @post, it's a better practice to use lo
+cal variables. A primary reason is flexibility.
+We want to be able to render our partial on any page,
+ whether or not it has acce
+ss to the same instance variables.-->
