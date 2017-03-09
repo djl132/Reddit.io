@@ -11,6 +11,7 @@ class TopicsController < ApplicationController
 
 
   def create
+    # WAS THE ID OF THE PARAMS
     @topic = Topic.new
     @topic.name = params[:topic][:name]
     @topic.description = params[:topic][:description]
@@ -28,6 +29,7 @@ class TopicsController < ApplicationController
 
 
   def edit
+    # INFROM UPDATE ABOUT THE ID OF THE TOPIC BEING UPDATED
       @topic = Topic.find(params[:id])
   end
 
