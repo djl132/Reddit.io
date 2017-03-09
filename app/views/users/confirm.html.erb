@@ -1,0 +1,11 @@
+<h1> Sign up confirmation?</h1>
+<h4> Are you sure these values are correct?</h4>
+
+<h3>Name:</h3>
+ <p> <%= params[:user][:name]%></p>
+<h3>Email:</h3>
+ <p><%= params[:user][:email]%></p>
+
+
+<%= button_to "Yes", {controller: "users", action: "create", params: params}, class: "btn btn-success" %>
+<%= button_to "No", {controller: "users", action: "new"}, class: "btn btn-danger" %>
