@@ -1,5 +1,14 @@
 class User < ApplicationRecord
 
+  before_save {self.name =
+
+              if name.present?
+                arr = name.split(" ")
+                arr.each do  |name|  name.capitalize! end
+                arr.join(" ")
+              end
+
+                }
 
   before_save { self.email = email.downcase if email.present? }
 
@@ -16,7 +25,6 @@ class User < ApplicationRecord
 
 # BCRYPT
   has_secure_password
-
 
 
 end
