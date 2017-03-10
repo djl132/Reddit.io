@@ -6,6 +6,9 @@ class UsersController < ApplicationController
 
   def confirm
     @user = User.new
+
+    # need to create a user object to pass data into the params f the form_for
+    #  form we created with hidden_fields
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
     @user.password = params[:user][:password]

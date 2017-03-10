@@ -2,10 +2,16 @@
 <h4> Are you sure these values are correct?</h4>
 
 <h3>Name:</h3>
- <p> <%= params[:user][:name]%></p>
+ <p> <%= @user.name %></p>
 <h3>Email:</h3>
  <p><%= params[:user][:email]%></p>
 
+<%= form_for @user do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :email %>
+  <%= f.hidden_field :password %>
+  <%= f.hidden_field :password_confirmation %>
+  <%= f.submit "Yes", class: 'btn btn-success' %>
+<% end %>
 
-<%= button_to "Yes", {controller: "users", action: "create", params: params}, class: "btn btn-success" %>
 <%= button_to "No", {controller: "users", action: "new"}, class: "btn btn-failure", method: :get %>
