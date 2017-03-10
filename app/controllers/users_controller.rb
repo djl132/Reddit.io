@@ -16,6 +16,8 @@ class UsersController < ApplicationController
 # #10
   if @user.save
     flash[:notice] = "Welcome to Bloccit #{@user.name}!"
+    # assign session the signed in user's id - this will change the view
+    create_session(@user)
     redirect_to root_path
   else
     flash.now[:alert] = "There was an error creating your account. Please try again."
