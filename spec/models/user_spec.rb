@@ -22,6 +22,8 @@ it {is_expected.to validate_length_of(:password).is_at_least(6)}
 it{is_expected.to have_secure_password} # IS THIS A BCRYPT OR SHOULDA?
 
 
+it {is_expected.to have_many(:posts)}
+
 # Shoulda tests for password
 describe "attributes ov valid user" do
   it "should have name and email attributes" do

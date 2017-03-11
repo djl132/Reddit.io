@@ -1,5 +1,11 @@
 
-<h1><%= @post.title %></h1>
+<h1>
+  <%= @post.title %> <br>
+  <small>
+    submitted <%=time_ago_in_words(@post.created_at)%> ago by <%=@post.user.name%><br>
+  </small>
+
+</h1>
 
  <div class="row">
    <div class="col-md-8">
@@ -13,3 +19,12 @@
       button is pressed the route called is the delete route. -->
    </div>
  </div>
+
+
+
+ <h1>
+    <%= @post.title %> <br>
+    <small>
+      submitted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %>
+    </small>
+  </h1>
