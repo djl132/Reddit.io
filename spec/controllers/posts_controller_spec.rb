@@ -76,6 +76,8 @@ end
 
 
 context "signed-in user" do
+
+  # create session before each describe tests
   before do
     create_session(my_user)
   end
@@ -140,7 +142,7 @@ context "signed-in user" do
 
     it "renders edit view" do
       get :edit, topic_id: my_topic.id, id: my_post.id
-      expect(response).to render_template(:edit)
+      expect(response).to render_template :edit
     end
 
     it "assigns editeable post to @post" do
@@ -197,6 +199,5 @@ context "signed-in user" do
     end
   end
 end
-
 
 end
