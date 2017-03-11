@@ -3,6 +3,9 @@ class PostsController < ApplicationController
  # require sign in to CRU posts excapt for show
 before_action :require_sign_in, except: :show
 
+before_action :authorize_user, except: [:show, :new, :create]
+
+
 # DISPLAYS VIEW FOR POST AND TAKES IN POST DATA USING FORM_FOR, PASSING DATA TO CREATE
   def new
     # ALLOWS THE ROUTE TO GET THE TOPIC ID OF THE TOPID TO WHICH YOU ARE CREATING A POST
@@ -76,6 +79,7 @@ before_action :require_sign_in, except: :show
    end
 
 
+
   private
 
   # ALLOW CONTROLLERS TO USE  PARAMS TO MASS ASSIGN A RESOURCE
@@ -85,4 +89,28 @@ before_action :require_sign_in, except: :show
       # WHAT DOES PARAMS.REQUIRE DO?
       params.require(:post).permit(:title, :body)
     end
+
+
+    def authorize_user
+         post = Post.find(params[:id])
+     # #11
+         unless current_user == post.user || current_user.admin?
+           flash[:alert] = "You must be an admin to do that."
+           redirect_to [post.topic, post]
+         end
+     end
+
+
+
+     def authorize_user
+      #  get the post you want to CRUD
+       post = Post.find(params[:id])
+
+       unless current_user == post.user || current_user.admin?
+         flash[:alert] = "You must be an admin to do that."
+         redirect_to [post.topic, post]
+       end
+     end
+
+     
 end

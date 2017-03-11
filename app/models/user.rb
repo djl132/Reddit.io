@@ -1,5 +1,9 @@
 class User < ApplicationRecord
 
+
+# set role to member by defualt if not explicitly set
+before_save {self.role ||= :member}
+
 has_many :posts
 
   before_save {self.name =
@@ -27,6 +31,8 @@ has_many :posts
 
 # BCRYPT
   has_secure_password
+
+  enum role: [:member, :admin]
 
 
 end

@@ -13,12 +13,14 @@
    </div>
    <div class="col-md-4">
  <!-- #5 -->
-    <%= link_to "Edit", edit_topic_post_path(@post.topic, @post), class: 'btn btn-success' %>
-     <%= link_to "Delete Post", [@post.topic, @post], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this post?' } %>
-     <!-- We override the default method (:post) with :delete so that when the
-      button is pressed the route called is the delete route. -->
-   </div>
- </div>
+     <% if user_is_authorized_for_post?(@post) %>
+        <%= link_to "Edit", edit_topic_post_path(@post.topic, @post), class: 'btn btn-success' %>
+         <%= link_to "Delete Post", [@post.topic, @post], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this post?' } %>
+         <!-- We override the default method (:post) with :delete so that when the
+          button is pressed the route called is the delete route. -->
+       <%end%>
+    </div>
+  </div>
 
 
 
