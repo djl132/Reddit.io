@@ -5,6 +5,7 @@ class User < ApplicationRecord
 before_save {self.role ||= :member}
 
 has_many :posts
+has_many :comments
 
   before_save {self.name =
 

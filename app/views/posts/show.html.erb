@@ -10,7 +10,17 @@
  <div class="row">
    <div class="col-md-8">
      <p><%= @post.body %></p>
-   </div>
+    <div>
+      <h3> Comments</h3>
+      <!--  REDNER ALL COMMENTS FROM PARTIAL-->
+      <%= render @post.comments%>
+
+   <%if current_user%>
+    <%= render 'comments/form', comment: Comment.new, post: @post%>
+    <%end%>
+  </div>
+</div>
+
    <div class="col-md-4">
  <!-- #5 -->
      <% if user_is_authorized_for_post?(@post) %>
