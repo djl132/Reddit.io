@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+
+  after_create :create_vote
+
     belongs_to :topic
     belongs_to :user
     has_many :comments, dependent: :destroy
@@ -8,6 +11,8 @@ class Post < ApplicationRecord
     validates :body, length: { minimum: 20 }, presence: true
     validates :topic, presence: true
     validates :user, presence: true
+
+    default_scope { order('rank DESC')}
 
 
 
@@ -32,6 +37,13 @@ class Post < ApplicationRecord
         update_attribute(:rank, new_rank)
     end
 
-    default_scope { order('rank DESC') }
+    private
+
+    def create_vote
+      user.votes.create!(value:1, post: self)
+    end
+# retrieve latest posts first
+
+
 
 end

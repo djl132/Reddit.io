@@ -1,6 +1,5 @@
 module ApplicationHelper
 
-
 # what is the &PROC FOR?
 
 # CREATES A FORM ELEMENT OF THE CLASS FORM-GROUP THAT USES BOOTSTRAP'S
