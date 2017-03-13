@@ -6,6 +6,7 @@ before_save {self.role ||= :member}
 
 has_many :posts
 has_many :comments
+has_many :votes, dependent: :destroy
 
   before_save {self.name =
 
