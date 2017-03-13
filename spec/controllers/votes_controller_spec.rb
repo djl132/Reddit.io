@@ -1,5 +1,122 @@
 require 'rails_helper'
+ include SessionsHelper
 
-RSpec.describe VotesController, type: :controller do
+ RSpec.describe VotesController, type: :controller do
+   let(:my_user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
+   let(:other_user) { User.create!(name: RandomData.random_name, email: RandomData.random_email, password: "helloworld", role: :member) }
+   let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
+   let(:user_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: other_user) }
+   let(:my_vote) { Vote.create!(value: 1) }
 
-end
+ # #17
+   context "guest" do
+     describe "POST up_vote" do
+       it "redirects the user to the sign in view" do
+         post :up_vote, post_id: user_post.id
+         expect(response).to redirect_to(new_session_path)
+       end
+     end
+
+     describe "POST down_vote" do
+      it "redirects the user to the sign in view" do
+        delete :down_vote, post_id: user_post.id
+        expect(response).to redirect_to(new_session_path)
+      end
+    end
+   end
+
+ # #18
+   context "signed in user" do
+     before do
+       create_session(my_user)
+       request.env["HTTP_REFERER"] = topic_post_path(my_topic, user_post)
+     end
+
+     describe "POST up_vote" do
+ # #19
+       it "the users first vote increases number of post votes by one" do
+         votes = user_post.votes.count
+         post :up_vote, post_id: user_post.id
+         expect(user_post.votes.count).to eq(votes + 1)
+       end
+
+ # #20
+       it "the users second vote does not increase the number of votes" do
+         post :up_vote, post_id: user_post.id
+         votes = user_post.votes.count
+         post :up_vote, post_id: user_post.id
+         expect(user_post.votes.count).to eq(votes)
+       end
+
+ # #21
+       it "increases the sum of post votes by one" do
+         points = user_post.points
+         post :up_vote, post_id: user_post.id
+         expect(user_post.points).to eq(points + 1)
+       end
+
+ # #22
+       it ":back redirects to posts show page" do
+         request.env["HTTP_REFERER"] = topic_post_path(my_topic, user_post)
+         post :up_vote, post_id: user_post.id
+         expect(response).to redirect_to([my_topic, user_post])
+       end
+
+ # #23
+       it ":back redirects to posts topic show" do
+         request.env["HTTP_REFERER"] = topic_path(my_topic)
+         post :up_vote, post_id: user_post.id
+         expect(response).to redirect_to(my_topic)
+       end
+   end
+
+   describe "POST down_vote" do
+       it "the users first vote increases number of post votes by one" do
+         votes = user_post.votes.count
+         post :down_vote, post_id: user_post.id
+         expect(user_post.votes.count).to eq(votes + 1)
+       end
+
+       it "the users second vote does not increase the number of votes" do
+         post :down_vote, post_id: user_post.id
+         votes = user_post.votes.count
+         post :down_vote, post_id: user_post.id
+         expect(user_post.votes.count).to eq(votes)
+       end
+
+       it "decreases the sum of post votes by one" do
+         points = user_post.points
+         post :down_vote, post_id: user_post.id
+         expect(user_post.points).to eq(points - 1)
+       end
+
+       it ":back redirects to posts show page" do
+         request.env["HTTP_REFERER"] = topic_post_path(my_topic, user_post)
+         post :down_vote, post_id: user_post.id
+         expect(response).to redirect_to([my_topic, user_post])
+       end
+
+       it ":back redirects to posts topic show" do
+         request.env["HTTP_REFERER"] = topic_path(my_topic)
+         post :down_vote, post_id: user_post.id
+         expect(response).to redirect_to(my_topic)
+       end
+     end
+
+     describe "update_post callback" do
+      it "triggers update_post on save" do
+  # #26
+        expect(vote).to receive(:update_post).at_least(:once)
+        vote.save!
+        end
+
+      it "#update_post should call update_rank on post " do
+  # #27
+        expect(post).to receive(:update_rank).at_least(:once)
+        vote.save!
+        end
+      end
+
+   end
+
+ end

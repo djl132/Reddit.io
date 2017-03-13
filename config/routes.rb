@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 # WAHT DOES THAT MEAN?
   resources :posts, only: [] do
     resources :comments, only: [:create, :destroy]
+
+    post '/up-vote' => 'votes#up_vote', as: :up_vote
+    post '/down-vote' => 'votes#down_vote', as: :down_vote
   end
 
     resources :users, only: [:new, :create]
@@ -20,8 +23,9 @@ Rails.application.routes.draw do
 
 # voting routes
 
-    post '/up-vote' => 'votes#up_vote', as: :up_vote
-    post '/down-vote' => 'votes#down_vote', as: :down_vote
+# WHCIH PART OF THIS ACTUALLY TRIGGERS THE ACTION?
+
+
 
 
   get 'about' => "welcome#about"
