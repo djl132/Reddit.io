@@ -24,6 +24,8 @@ it{is_expected.to have_secure_password} # IS THIS A BCRYPT OR SHOULDA?
 
 it {is_expected.to have_many(:posts)}
 it { is_expected.to have_many(:comments) }
+it { is_expected.to have_many(:votes) }
+
 
 
 # Shoulda tests for password

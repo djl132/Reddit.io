@@ -9,6 +9,21 @@ class Post < ApplicationRecord
     validates :topic, presence: true
     validates :user, presence: true
 
-
     default_scope { order('created_at DESC') }
+
+
+    # METHODS FOR GETTING ATTRIBUTE VALUES, such as NUMBER OF UPVOTES AND DOWNVOTES
+
+    def up_votes
+      votes.where(value: 1).count
+    end
+
+    def down_votes
+      votes.where(value: -1).count
+    end
+
+    def points
+      votes.sum(:value)
+    end
+
 end

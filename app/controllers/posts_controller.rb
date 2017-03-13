@@ -80,6 +80,7 @@ before_action :authorize_user, except: [:show, :new, :create]
 
 
 
+
   private
 
   # ALLOW CONTROLLERS TO USE  PARAMS TO MASS ASSIGN A RESOURCE
@@ -112,5 +113,5 @@ before_action :authorize_user, except: [:show, :new, :create]
        end
      end
 
-     
+
 end

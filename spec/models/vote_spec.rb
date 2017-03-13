@@ -20,4 +20,5 @@ it { is_expected.to validate_inclusion_of(:value).in_array([-1,1])}
 
 
 
+
 end
