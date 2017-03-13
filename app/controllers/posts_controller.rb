@@ -80,7 +80,6 @@ before_action :authorize_user, except: [:show, :new, :create]
 
 
 
-
   private
 
   # ALLOW CONTROLLERS TO USE  PARAMS TO MASS ASSIGN A RESOURCE
@@ -91,7 +90,6 @@ before_action :authorize_user, except: [:show, :new, :create]
       params.require(:post).permit(:title, :body)
     end
 
-
     def authorize_user
          post = Post.find(params[:id])
      # #11
@@ -99,18 +97,6 @@ before_action :authorize_user, except: [:show, :new, :create]
            flash[:alert] = "You must be an admin to do that."
            redirect_to [post.topic, post]
          end
-     end
-
-
-
-     def authorize_user
-      #  get the post you want to CRUD
-       post = Post.find(params[:id])
-
-       unless current_user == post.user || current_user.admin?
-         flash[:alert] = "You must be an admin to do that."
-         redirect_to [post.topic, post]
-       end
      end
 
 

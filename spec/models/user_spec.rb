@@ -15,17 +15,20 @@ it {is_expected.to validate_length_of(:email).is_at_least(3)}
 it {is_expected.to validate_uniqueness_of(:email)}
             # awhat exactly is this doing?
 it {is_expected.to allow_value("user@bloccit.com").for(:email)}
+
+
 it {is_expected.to have_many(:posts)}
+it { is_expected.to have_many(:favorites) }
+it { is_expected.to have_many(:comments) }
+it { is_expected.to have_many(:votes) }
+
+
+
+
 # Shoulda tests for password
 it {is_expected.to validate_presence_of(:password)}
 it {is_expected.to validate_length_of(:password).is_at_least(6)}
 it{is_expected.to have_secure_password} # IS THIS A BCRYPT OR SHOULDA?
-
-
-it {is_expected.to have_many(:posts)}
-it { is_expected.to have_many(:comments) }
-it { is_expected.to have_many(:votes) }
-
 
 
 # Shoulda tests for password

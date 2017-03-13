@@ -1,0 +1,46 @@
+
+<% @threadPosts.each do |post| %>
+<div>
+
+  <%= render partial: 'votes/voter', locals: { post: post } %>
+<h1>
+  <%= post.title %> <br>
+  <small>
+    submitted <%=time_ago_in_words(post.created_at)%> ago by <%=post.user.name%><br>
+  </small>
+
+</h1>
+</div>
+
+ <div class="row">
+   <div class="col-md-8">
+     <p><%= post.body %></p>
+    <div>
+      <h3> Comments</h3>
+      <!--  REDNER ALL COMMENTS FROM PARTIAL-->
+      <%= render post.comments%>
+
+   <%if current_user%>
+    <%= render 'comments/form', comment: Comment.new, post: post%>
+    <%end%>
+  </div>
+</div>
+
+   <div class="col-md-4">
+ <!-- #5 -->
+     <% if user_is_authorized_for_post?(post) %>
+        <%= link_to "Edit", edit_topic_post_path(post.topic, post), class: 'btn btn-success' %>
+         <%= link_to "Delete Post", [post.topic, post], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this post?' } %>
+         <!-- We override the default method (:post) with :delete so that when the
+          button is pressed the route called is the delete route. -->
+       <%end%>
+    </div>
+
+    <div class="col-md-4">
+      <% if current_user %>
+        <%= render partial: 'favorites/favorite', locals: {post: post} %>
+      <%end%>
+
+      </div>
+  </div>
+<%end%>

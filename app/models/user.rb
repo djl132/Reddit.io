@@ -4,9 +4,13 @@ class User < ApplicationRecord
 # set role to member by defualt if not explicitly set
 before_save {self.role ||= :member}
 
+
+
 has_many :posts, dependent: :destroy
 has_many :comments, dependent: :destroy
 has_many :votes, dependent: :destroy
+has_many :favorites, dependent: :destroy
+
 
   before_save {self.name =
 
@@ -35,6 +39,20 @@ has_many :votes, dependent: :destroy
   has_secure_password
 
   enum role: [:member, :admin]
+
+
+  def favorite_for(post)
+    favorites.where(post_id: post.id).first
+  end
+  #
+  # def followed_posts
+  #   thread = []
+  #   favorites.each do |favorite|
+  #     thread << favorite.post
+  #   end
+  #   return thread
+  # end
+
 
 
 end
