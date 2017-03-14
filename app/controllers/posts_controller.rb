@@ -78,6 +78,9 @@ before_action :authorize_user, except: [:show, :new, :create]
       end
    end
 
+  
+
+
 
 
   private

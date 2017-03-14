@@ -67,6 +67,11 @@ before_action :authorize_user, except: [:index, :show]
   end
 
 
+  def threads
+    @threads = current_user.threads
+  end
+
+
   private
 
    def topic_params

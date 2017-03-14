@@ -6,11 +6,11 @@ before_action :require_sign_in
 before_action :authorize_user, only: [:destroy]
 
 def create
-  @post = Post.find_by(params[:post_id])
+  @post = Post.find(params[:post_id])
   # look over mass assignment
   comment = @post.comments.new(comment_params)
   comment.user = current_user
-
+  
     if comment.save
       flash[:notice] = "Comment saved successfully."
       redirect_to [@post.topic, @post] # re render post page
@@ -45,8 +45,8 @@ private
 
 # authoize Destroy comment
     def authorize_user
-      @comment = Comment.find(params[:id])
-      unless current_user == @comment.user || current_user.admin?
+      comment = Comment.find(params[:id])
+      unless current_user == comment.user || current_user.admin?
         flash[:alert] = "You do not have permission to delete a comment."
         redirect_to [comment.post.topic, comment.post]
       end

@@ -1,19 +1,25 @@
-<div class = "media">
 
+<%= content_tag :div, class: 'media', id: "comment-#{comment.id}" do %>
+
+<div class = "media">
   <div class = "media-body">
 
-    <p><%= comment.body %></p>
         <small>
           <%=comment.user.name%> commented <%= time_ago_in_words(comment.created_at)%> ago
+          <% if user_is_authorized_for_comment?(comment)%>
+        <!-- so somehow a form crated by a parent.(child) will ahve access to its parent isntace? -->
+          | <%= link_to "Delete", [@post, comment], method: :delete%>
+        <%end%>
         </small>
+
+        <p><%= comment.body %></p>
+    </div>
   </div>
+
 
 
   <!-- @post information > DESTROY action -->
 
-  <% if user_is_authorized_for_comment?(comment)%>
-  <!-- so somehow a form crated by a parent.(child) will ahve access to its parent isntace? -->
-    | <%= link_to "Delete", [@post, comment], method: :delete%>
-  <%end%>
 
-</div>
+
+<%end%>

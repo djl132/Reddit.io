@@ -10,6 +10,7 @@ has_many :posts, dependent: :destroy
 has_many :comments, dependent: :destroy
 has_many :votes, dependent: :destroy
 has_many :favorites, dependent: :destroy
+# has_many :topics, dependent: :destroy
 
 
   before_save {self.name =
@@ -44,14 +45,14 @@ has_many :favorites, dependent: :destroy
   def favorite_for(post)
     favorites.where(post_id: post.id).first
   end
-  #
-  # def followed_posts
-  #   thread = []
-  #   favorites.each do |favorite|
-  #     thread << favorite.post
-  #   end
-  #   return thread
-  # end
+
+  def threads
+    threads = []
+    favorites.each do |topic|
+      thread << favorite.topic
+    end
+    return threads
+  end
 
 
 

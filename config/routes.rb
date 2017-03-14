@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   end
 
 
+
+
   # At #4, we use only: [] because we don't want to create any /posts/:id routes, just posts/:post_id/comments routes.
 
 # WAHT DOES THAT MEAN?
@@ -20,6 +22,8 @@ Rails.application.routes.draw do
 
   end
 
+
+
     resources :users, only: [:new, :create]
     resources :sessions, only: [:new, :create, :destroy]
 
@@ -28,6 +32,7 @@ Rails.application.routes.draw do
 # WHCIH PART OF THIS ACTUALLY TRIGGERS THE ACTION?
 
 
+get '/threads' => 'topics#threads'
 
 
   get 'about' => "welcome#about"
