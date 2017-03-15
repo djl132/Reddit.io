@@ -43,7 +43,8 @@ before_action :authorize_user, except: [:show, :new, :create]
 
   def show
     #IS THIS ENOUGH???????????????WHA  AOBUT TOPIC?????
-    @post = Post.find(params[:id]) #STORING GET INFORMATION(URL QUERY PARAMS)
+    @post = Post.find(params[:id])
+    #STORING GET INFORMATION(URL QUERY PARAMS)
   end
 
 
@@ -78,7 +79,7 @@ before_action :authorize_user, except: [:show, :new, :create]
       end
    end
 
-  
+
 
 
 

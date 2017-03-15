@@ -21,21 +21,20 @@ RSpec.describe Post, type: :model do
   it { is_expected.to validate_presence_of(:user) }
 
 
-  let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
 
-  let(:name) { RandomData.random_sentence }
-  let(:description) { RandomData.random_paragraph }
-  let(:title) { RandomData.random_sentence }
-  let(:body) { RandomData.random_paragraph }
-  let(:topic) {Topic.create!(name: name, description: description)}
 
-    # what is create? who does it belong ot?
-    let(:post) {topic.posts.create!(title:title, body: body, user: user)}
+
+  # what is create? who does it belong ot?
+# HOW DOES THE USER ATTRIBUTES WORK?
+  let(:topic) { create(:topic) }
+    let(:user) { create(:user) }
+    let(:post) { create(:post) }
+
 
 
   describe "attributes" do
     it "has title,  body, and user attributes" do
-      expect(post).to have_attributes(title: title, body: body, user: user)
+      expect(post).to have_attributes(title: post.title, body: post.body)
     end
   end
 

@@ -1,0 +1,17 @@
+<html>
+   <head>
+     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+   </head>
+   <body>
+     <h1>You will recieve any updates on your post.</h1>
+     <small><%= @post.topic.title %><small>
+
+     <p>
+       <%= @post.body %>
+     </p>
+
+     <p>
+       <%= link_to "View Your Post", topic_post_url(@post.topic, @post) %>
+     </p>
+   </body>
+ </html>

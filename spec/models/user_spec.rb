@@ -5,6 +5,7 @@ RSpec.describe User, type: :model do
   # wait I thought that it was password_digest????
   let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
 
+
 # Shoulda tests for name
 it { is_expected.to validate_presence_of(:name) }
 it { is_expected.to validate_length_of(:name).is_at_least(1) }
@@ -88,8 +89,10 @@ describe "attributes on valid user" do
   end
 
 describe "invalid user" do
-  let(:user_with_invalid_name) {User.new(name:"", email:"user@bloccit.com")}
-  let(:user_with_invalid_email) {User.new(name:"Bloccit User", email: "")}
+
+  let(:user_with_invalid_name) { build(:user, name: "") }
+      let(:user_with_invalid_email) { build(:user, email: "") }
+      
   let(:user_with_invalid_password) {User.new(name:"Bloccit User", email: "user@bloccit.com", password: "")}
   it "should expect invalid user due to blank name" do
     expect(user_with_invalid_name).to_not be_valid
@@ -101,6 +104,19 @@ describe "invalid user" do
     expect(user_with_invalid_password).to_not be_valid
   end
 end
+
+
+describe ".avatar_url" do
+# #6
+   let(:known_user) { create(:user, email: "blochead@bloc.io") }
+
+   it "returns the proper Gravatar url for a known email entity" do
+# #7
+     expected_gravatar = "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"
+# #8
+     expect(known_user.avatar_url(48)).to eq(expected_gravatar)
+   end
+ end
 
 
 end

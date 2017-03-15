@@ -12,6 +12,7 @@ class Post < ApplicationRecord
     validates :user, presence: true
 
 
+    after_create :initiate_owner_follow
 
     # METHODS FOR GETTING ATTRIBUTE VALUES, such as NUMBER OF UPVOTES AND DOWNVOTES
 
@@ -34,6 +35,17 @@ class Post < ApplicationRecord
         update_attribute(:rank, new_rank)
     end
 
+# have creator of post follow post
+    def initiate_owner_follow
+      FavoriteMailer.new_post(self.user, self)
+    end
+
     default_scope { order('rank DESC') }
+
+
+# if current user is the post's user(referenced as second,
+ # then you all, or else only give everythign that is public
+
+    scope :visible_to, -> (user) {user  ? all: joins(:topic).where('topic.public'  => true)}
 
 end

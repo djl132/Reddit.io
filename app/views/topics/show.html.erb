@@ -9,24 +9,8 @@
   <div class="col-md-8">
     <p class="lead"><%= @topic.description %></p>
 <!-- DISPLAY TOPIC POSTS -->
-    <% @topic.posts.each do |post| %>
+    <%= render @topic.posts %>
 
-      <div class="media">
-        <%= render partial: 'votes/voter', locals: { post: post } %>
-
-        <div class="media-body">
-          <h4 class="media-heading">
-            <%= link_to post.title, topic_post_path(@topic, post) %>
-          </h4>
-<!-- #40 -->
-          <small>
-            submitted <%= time_ago_in_words(post.created_at) %> ago by <%=post.user.name%> <br>
-            <%= post.comments.count %> Comments
-          </small>
-          </h4>
-        </div>
-      </div>
-    <% end %>
   </div>
   <div class="col-md-4">
     <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
