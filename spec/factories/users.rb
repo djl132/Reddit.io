@@ -9,5 +9,5 @@ FactoryGirl.define do
      password_confirmation pw
      role :member
    end
-   
+
  end

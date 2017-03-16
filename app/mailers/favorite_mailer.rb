@@ -30,6 +30,4 @@ class FavoriteMailer < ApplicationMailer
   end
 
 
-  end
-
 end

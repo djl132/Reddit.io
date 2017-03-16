@@ -2,11 +2,9 @@
    <div class="col-md-8">
      <div class="media">
        <br />
- // #12
        <% avatar_url = @user.avatar_url(128) %>
        <% if avatar_url %>
          <div class="media-left">
- // #13
            <%= image_tag avatar_url, class: 'media-object' %>
          </div>
        <% end %>
@@ -21,9 +19,19 @@
    </div>
  </div>
 
- // #14
+
+ <% if user_has_any_posts_or_comments(@user) %>
+
  <h2>Posts</h2>
- <%= render 'posts/profile_posts', posts: @user.posts %>
+ <%= render 'posts/profile_posts', posts: @posts %>
 
  <h2>Comments</h2>
  <%= render @user.comments %>
+
+ <h2>Following</h2>
+ <%= render 'posts/profile_posts', posts: @favorited_posts %>
+
+ <%else%>
+ <h2><%= "#{@user.name} has not submitted any posts yet."%></h2>
+
+<%end%>

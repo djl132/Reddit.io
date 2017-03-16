@@ -6,6 +6,4 @@ class Favorite < ApplicationRecord
   # after_save :update_thread
 
 
-
-
 end

@@ -29,6 +29,7 @@ end
 def show
   @user = User.find(params[:id])
   @posts = @user.posts.visible_to(current_user)
+  @favorited_posts = @posts.favorited_by(current_user)
 end
 
 

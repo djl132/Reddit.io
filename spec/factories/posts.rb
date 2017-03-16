@@ -1,5 +1,5 @@
 FactoryGirl.define do
-   factory 2:post do
+   factory :post do
      title RandomData.random_sentence
      body RandomData.random_paragraph
      topic

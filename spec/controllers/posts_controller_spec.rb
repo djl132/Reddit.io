@@ -25,6 +25,7 @@ context "guest user" do
       get :show, topic_id: my_topic.id, id: my_post.id
       expect(assigns(:post)).to eq(my_post)
     end
+  end
 
 
     describe "GET new" do
