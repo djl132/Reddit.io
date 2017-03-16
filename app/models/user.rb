@@ -60,4 +60,14 @@ has_many :favorites, dependent: :destroy
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
   end
 
+
+  def favorite_posts
+    arr = []
+    favorites do |favorite|
+      arr << favorite.post
+    end
+      return arr
+  end
+
+
 end

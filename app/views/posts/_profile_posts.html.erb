@@ -4,11 +4,11 @@
 <div>
 
   <%= render partial: 'votes/voter', locals: { post: post } %>
-<h1>
+<h3>
 
   <% avatar_url = @user.avatar_url(50) %>
   <% if avatar_url %>
-    <div class="media-left">
+    <div class="media-left pull-left">
       <%= image_tag avatar_url, class: 'media-object' %>
     </div>
   <% end %>
@@ -18,7 +18,7 @@
       submitted <%=time_ago_in_words(post.created_at)%> ago by <%=post.user.name%><br>
     </small>
 
-</h1>
+</h3>
 </div>
 
  <div class="row">

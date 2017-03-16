@@ -43,11 +43,15 @@ class Post < ApplicationRecord
     default_scope { order('rank DESC') }
 
 
+
+
+
+
 # gets all public posts using a query metho
 # IS THIS A CASE WEHRE THE JOIN TABLE CREATED BY THE INDEX IS USED? LOLS YEAH NOPE I'M STILL CONFUSED. BUT ESSENTIALLY IT'S RETRIEV
 # HOW IS HTIS AN INNER JOIN, THOUGH?
 
 scope :visible_to, -> (user) {user  ? all : joins(:topic).where('topic.public'  => true)}
-scope :favorited_by, -> (user) {user  ?  joins(:favorite).where('favorite.user' => user) : nil}
+# scope :favorited_by, -> (user) {user  ? find_by('favorite.user' => user) : nil}
 
 end
