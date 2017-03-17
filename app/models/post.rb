@@ -37,7 +37,7 @@ class Post < ApplicationRecord
 
 # have creator of post follow post
     def initiate_owner_notify
-      Favorite.create(post:self, user: self.user)
+      Favorite.create!(post:self, user: self.user)
       FavoriteMailer.new_post(self.user, self).deliver_now
     end
 
