@@ -31,5 +31,16 @@ class FavoriteMailer < ApplicationMailer
         mail(to: user.email, subject: "You are tracking your post: #{post.title}")
   end
 
+  # def new_post(post)
+  #
+  #   headers["Message-ID"] = "<post/#{post.id}@dunno.com>"
+  #   headers["In-Reply-To"] = "<post/#{post.id}@dunno.com>"
+  #   headers["References"] = "<post/#{post.id}@dunno.com>"
+  #   puts post
+  #
+  #       @post = post
+  #       mail(to: post.user.email, subject: "You are tracking your post: #{post.title}")
+  # end
+
 
 end

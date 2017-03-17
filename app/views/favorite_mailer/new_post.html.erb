@@ -1,10 +1,14 @@
+<!DOCTYPE html>
+
 <html>
    <head>
      <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
    </head>
    <body>
-     <h1>You will recieve any updates on your post.</h1>
-     <small><%= @post.topic.title %><small>
+     <h2>You will recieve any updates on your post.</h2>
+     <small><%= @post.topic.name %><small>
+
+       <h4> <%= @post.title %></h4>
 
      <p>
        <%= @post.body %>
