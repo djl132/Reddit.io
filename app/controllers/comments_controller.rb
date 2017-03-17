@@ -10,7 +10,7 @@ def create
   # look over mass assignment
   comment = @post.comments.new(comment_params)
   comment.user = current_user
-  
+
     if comment.save
       flash[:notice] = "Comment saved successfully."
       redirect_to [@post.topic, @post] # re render post page

@@ -12,7 +12,7 @@ class Post < ApplicationRecord
     validates :user, presence: true
 
 
-    after_create :initiate_owner_follow
+    after_create :initiate_owner_notify
 
     # METHODS FOR GETTING ATTRIBUTE VALUES, such as NUMBER OF UPVOTES AND DOWNVOTES
 
@@ -36,8 +36,9 @@ class Post < ApplicationRecord
     end
 
 # have creator of post follow post
-    def initiate_owner_follow
-      FavoriteMailer.new_post(self.user, self)
+    def initiate_owner_notify
+      Favorite.create(post:self, user: self.user)
+      FavoriteMailer.new_post(self.user, self).deliver_now
     end
 
     default_scope { order('rank DESC') }

@@ -23,6 +23,8 @@ class FavoriteMailer < ApplicationMailer
     headers["Message-ID"] = "<post/#{post.id}@dunno.com>"
     headers["In-Reply-To"] = "<post/#{post.id}@dunno.com>"
     headers["References"] = "<post/#{post.id}@dunno.com>"
+    puts user
+    puts post
 
         @user = user
         @post = post
