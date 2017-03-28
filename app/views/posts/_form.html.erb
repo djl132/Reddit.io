@@ -7,7 +7,7 @@
  <% if post.errors.any? %>
    <div class="alert alert-danger">
      <h4><%= pluralize(post.errors.count, "error") %>.</h4>
-     
+
      <ul>
        <% post.errors.full_messages.each do |msg| %>
          <li><%= msg %></li>
