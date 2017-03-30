@@ -3,7 +3,17 @@ class User < ApplicationRecord
 
 # set role to member by defualt if not explicitly set
 before_save {self.role ||= :member}
+before_save {self.name =
 
+            if name.present?
+              arr = name.split(" ")
+              arr.each do  |name|  name.capitalize! end
+              arr.join(" ")
+            end
+
+              }
+
+before_save { self.email = email.downcase if email.present? }
 
 
 has_many :posts, dependent: :destroy
@@ -12,18 +22,6 @@ has_many :votes, dependent: :destroy
 has_many :favorites, dependent: :destroy
 # has_many :topics, dependent: :destroy
 
-
-  before_save {self.name =
-
-              if name.present?
-                arr = name.split(" ")
-                arr.each do  |name|  name.capitalize! end
-                arr.join(" ")
-              end
-
-                }
-
-  before_save { self.email = email.downcase if email.present? }
 
 # #3
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
@@ -63,7 +61,7 @@ has_many :favorites, dependent: :destroy
 
   def favorite_posts
     arr = []
-    favorites do |favorite|
+    favorites.each do |favorite|
       arr << favorite.post
     end
       return arr

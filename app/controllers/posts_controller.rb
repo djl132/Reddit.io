@@ -21,7 +21,12 @@ before_action :authorize_user, except: [:show, :new, :create]
     @topic = Topic.find(params[:topic_id])
 
     # creates(BUILDS) post in a topic with the ALLOWED attributes and associated user
+
+
+
+    # wiat I thought this should already save, hmmm......shouldn't this error out?
     @post = @topic.posts.build(post_params)
+    # @post = @topic.posts.new(post_params)
     @post.user = current_user
 
 #update data, handle errors

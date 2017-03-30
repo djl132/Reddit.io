@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     # get current user and create session with that user
     user = User.find_by(email: params[:session][:email])
 
-    if user &&  user.authenticate(params[:session][:password])
+    if user && user.authenticate(params[:session][:password])
       create_session(user)
       flash[:notice] = "Welcome, #{user.name}!"
       redirect_to root_path

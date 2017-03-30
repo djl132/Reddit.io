@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
-# CREATE ROUTES FOR CRUD OEPRATIONS ON A RESOURCE
+# CREATE ROUTES FOR CRUD ACIOTNS ON A RESOURCE THAT PROVIDE CONTEXTUAL PARENT
+# INFORMATION FOR EACH ROUTE
   resources :topics do
 
     resources :posts, except: [:index]
 
   end
-
 
 
 

@@ -23,13 +23,10 @@
  <% if user_has_any_posts_or_comments(@user) %>
 
  <h2>Posts</h2>
- <%= render 'posts/profile_posts', posts: @posts %>
+ <%= render @user.posts %>
 
  <h2>Comments</h2>
  <%= render @user.comments %>
-
- <h2>Following</h2>
- <%= render 'posts/profile_posts', posts: @favorited_posts %>
 
  <%else%>
  <h2><%= "#{@user.name} has not submitted any posts yet."%></h2>
