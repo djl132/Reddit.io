@@ -1,7 +1,14 @@
 class PostsController < ApplicationController
 
+ # require sign in to CRU posts excapt for show
+before_action :require_sign_in, except: :show
+
+before_action :authorize_user, except: [:show, :new, :create]
+
+
 # DISPLAYS VIEW FOR POST AND TAKES IN POST DATA USING FORM_FOR, PASSING DATA TO CREATE
   def new
+    # ALLOWS THE ROUTE TO GET THE TOPIC ID OF THE TOPID TO WHICH YOU ARE CREATING A POST
     @topic = Topic.find(params[:topic_id])
     @post = Post.new #USE POST OBJECT TO COLLECT DATA  AND PASS TO CREATE ACTION
   end
@@ -12,10 +19,16 @@ class PostsController < ApplicationController
 # PARAMS IS TAKING IN THE ID OF TOPIC, FROM THE FORM_FOR? OR THE URL?
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = Post.new
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]  # HERE PARAMS IS STORING POST INFORMATION
-    @post.topic = @topic
+
+    # creates(BUILDS) post in a topic with the ALLOWED attributes and associated user
+
+
+
+    # wiat I thought this should already save, hmmm......shouldn't this error out?
+    @post = @topic.posts.build(post_params)
+    # @post = @topic.posts.new(post_params)
+    @post.user = current_user
+
 #update data, handle errors
     if @post.save
       # save a notice for DISPLAYING IN APPLCAITON LAYOUT.
@@ -35,7 +48,8 @@ class PostsController < ApplicationController
 
   def show
     #IS THIS ENOUGH???????????????WHA  AOBUT TOPIC?????
-    @post = Post.find(params[:id]) #STORING GET INFORMATION(URL QUERY PARAMS)
+    @post = Post.find(params[:id])
+    #STORING GET INFORMATION(URL QUERY PARAMS)
   end
 
 
@@ -57,8 +71,9 @@ class PostsController < ApplicationController
  # HOW IS INFORMATION GETTING PASSES INTO PARAMS HERE?
    def update
       @post = Post.find(params[:id]) #is thsi query url paramertes from edit?
-      @post.title = params[:post][:title]
-      @post.body = params[:post][:body]
+
+# UPDATE ATTRIBUTES
+      @post.assign_attributes(post_params)
 
       if @post.save
         flash[:notice] = "Post updated."
@@ -68,4 +83,30 @@ class PostsController < ApplicationController
         render :edit
       end
    end
+
+
+
+
+
+
+  private
+
+  # ALLOW CONTROLLERS TO USE  PARAMS TO MASS ASSIGN A RESOURCE
+  # RETURNS ATTRIBUTES OF AN OBJECT PARAMS
+    def post_params
+
+      # WHAT DOES PARAMS.REQUIRE DO?
+      params.require(:post).permit(:title, :body)
+    end
+
+    def authorize_user
+         post = Post.find(params[:id])
+     # #11
+         unless current_user == post.user || current_user.admin?
+           flash[:alert] = "You must be an admin to do that."
+           redirect_to [post.topic, post]
+         end
+     end
+
+
 end

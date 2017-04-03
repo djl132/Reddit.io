@@ -1,0 +1,9 @@
+You will recieve any updates on your post.
+<%= @post.topic.name %>
+
+<%= @post.title%>
+  <%= @post.body %>
+
+
+
+  <%= link_to "View Your Post", topic_post_url(@post.topic, @post) %>

@@ -1,0 +1,6 @@
+
+#production
+
+SENDGRID_PASSWORD: get_sendgrid_password_from_production
+SENDGRID_USERNAME: get_sendgrid_username_from_production
+ MY_SUPER_SECRET_VARIABLE: secret123456

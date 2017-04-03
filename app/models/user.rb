@@ -1,16 +1,27 @@
 class User < ApplicationRecord
 
-  before_save {self.name =
 
-              if name.present?
-                arr = name.split(" ")
-                arr.each do  |name|  name.capitalize! end
-                arr.join(" ")
-              end
+# set role to member by defualt if not explicitly set
+before_save {self.role ||= :member}
+before_save {self.name =
 
-                }
+            if name.present?
+              arr = name.split(" ")
+              arr.each do  |name|  name.capitalize! end
+              arr.join(" ")
+            end
 
-  before_save { self.email = email.downcase if email.present? }
+              }
+
+before_save { self.email = email.downcase if email.present? }
+
+
+has_many :posts, dependent: :destroy
+has_many :comments, dependent: :destroy
+has_many :votes, dependent: :destroy
+has_many :favorites, dependent: :destroy
+# has_many :topics, dependent: :destroy
+
 
 # #3
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
@@ -25,6 +36,36 @@ class User < ApplicationRecord
 
 # BCRYPT
   has_secure_password
+
+  enum role: [:member, :admin]
+
+
+  def favorite_for(post)
+    favorites.where(post_id: post.id).first
+  end
+
+  def threads
+    threads = []
+    favorites.each do |topic|
+      thread << favorite.topic
+    end
+    return threads
+  end
+
+
+  def avatar_url(size)
+    gravatar_id = Digest::MD5::hexdigest(self.email).downcase
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
+  end
+
+
+  def favorite_posts
+    arr = []
+    favorites.each do |favorite|
+      arr << favorite.post
+    end
+      return arr
+  end
 
 
 end
