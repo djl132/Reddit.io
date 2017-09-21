@@ -4,7 +4,7 @@ A reddit-like app that allows people to create posts based on topic. The most up
 
 In order to run just pull the repository and run:
 
-```bundle install```‹
+```bundle install```
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
