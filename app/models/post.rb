@@ -44,6 +44,10 @@ class Post < ApplicationRecord
     default_scope { order('rank DESC') }
 
 
+
+
+
+
 # gets all public posts using a query metho
 # IS THIS A CASE WEHRE THE JOIN TABLE CREATED BY THE INDEX IS USED? LOLS YEAH NOPE I'M STILL CONFUSED. BUT ESSENTIALLY IT'S RETRIEV
 # HOW IS HTIS AN INNER JOIN, THOUGH?
