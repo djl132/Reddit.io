@@ -1,13 +1,13 @@
 require 'random_data'
 
 
-
-5.times do
-  User.create!(
-  name:RandomData.random_name,
-  email:RandomData.random_email,
-  password: RandomData.random_sentence )
-end
+#
+# 5.times do
+#   User.create!(
+#   name:RandomData.random_name,
+#   email:RandomData.random_email,
+#   password: RandomData.random_sentence )
+# end
 
 
 users = User.all
@@ -50,27 +50,27 @@ posts = Post.all
 end
 
 
+ #
+ # user = User.first
+ # user.update_attributes!(
+ #   email: 'djl132@case.edu', # replace this with your personal email
+ #   password: 'helloworld'
+ # )
 
- user = User.first
- user.update_attributes!(
-   email: 'djl132@case.edu', # replace this with your personal email
-   password: 'helloworld'
- )
-
- # Create an admin user
-admin = User.create!(
-  name:     'Admin User',
-  email:    'admin@example.com',
-  password: 'helloworld',
-  role:     'admin'
-)
-
-# Create a member
-member = User.create!(
-  name:     'Member User',
-  email:    'member@example.com',
-  password: 'helloworld'
-)
+#  # Create an admin user
+# admin = User.create!(
+#   name:     'Admin User',
+#   email:    'admin@example.com',
+#   password: 'helloworld',
+#   role:     'admin'
+# )
+#
+# # Create a member
+# member = User.create!(
+#   name:     'Member User',
+#   email:    'member@example.com',
+#   password: 'helloworld'
+# )
 
 puts "Seed finished"
 puts "#{User.count} users created"

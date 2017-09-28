@@ -15,7 +15,7 @@ before_action :authorize_user, except: [:index, :show]
       @topic = Topic.new
   end
 
-
+# only admin can CRUD a topic, as well as access threads.
   def create
     @topic = Topic.new(topic_params)
 
