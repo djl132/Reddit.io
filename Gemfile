@@ -70,5 +70,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
 gem 'bcrypt'
+gem 'mailgun-ruby', '~>1.1.6'
+
 
 gem 'figaro', '1.0'
