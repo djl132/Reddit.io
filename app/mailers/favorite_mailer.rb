@@ -1,5 +1,5 @@
 class FavoriteMailer < ApplicationMailer
-  default from: 'linderek618@gmail.com'
+  default from: 'linderek618@sparkvision.com'
 
 # wait arent' these instance methods?  how come I can call them on a class
   def new_comment(user, post, comment)
