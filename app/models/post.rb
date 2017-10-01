@@ -11,7 +11,6 @@ class Post < ApplicationRecord
     validates :topic, presence: true
     validates :user, presence: true
 
-
     after_create :initiate_owner_notify
 
     # METHODS FOR GETTING ATTRIBUTE VALUES, such as NUMBER OF UPVOTES AND DOWNVOTES
