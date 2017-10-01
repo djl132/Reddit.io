@@ -6,13 +6,13 @@
    </head>
    <body>
      <h2>You will recieve any updates on your post.</h2>
-     <small><%= @post.topic.name %><small>
+     <h2>Topic: <%= @post.topic.name %><h2>
 
-       <h4> <%= @post.title %></h4>
+       <h3> Title: <%= @post.title %></h3>
 
-     <p>
-       <%= @post.body %>
-     </p>
+     <h4>
+      Body: <%= @post.body %>
+     </h4>
 
      <p>
        <%= link_to "View Your Post", topic_post_url(@post.topic, @post) %>
