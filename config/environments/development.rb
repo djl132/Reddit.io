@@ -53,7 +53,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
 
-# CONFIGURE MAILGUN TO SEND MAIL
+#
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :authentication => :plain,
