@@ -6,14 +6,24 @@ A reddit-like app that allows people to create posts based on certain topics. Po
 
 ## Features (pending)
 
-extra feature: roles. 
+#### Roles
+
 There are roles on this website. People with different roles have different degrees of authorization. 
 
-Admin: 
-  Can create topics, delete topics, as well as update or delete any posts or comments.
-  
+Admin:
+  ex: Admin User
+  Can create public and private topics, delete topics, as well as update or delete any posts or comments. 
+  
+Member:
+  ex: Member User 
+  Can create, update, delete their own posts. 
+
+#### Profile View
+
+Can view profile of another user, which displays his or her posts and comments.
 
 
+ 
 
 ## Configuration:
 
@@ -27,8 +37,15 @@ Use figaro install to generate a safe file to securely put Mailgun key authoriza
 Bundle Gemfile:
 ```bundle install```
 
+Create database and set admin(named Admin User) and dummy member(named Memeber User):
+```rake db:create```
+```rake db:migrate```
+```rake db:seed```
+
 Run server:
 ```rails s```
+
+
 
 
 
