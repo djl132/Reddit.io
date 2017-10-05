@@ -1,50 +1,36 @@
 # README
 
-A reddit-like app that allows people to create posts based on topic. The most upvoted posts will go to the top after accounting for time decay. You can also favorite posts to keep updated about the post, such as comments. You will be notified via email about any new activity of the post.
+## Description
+A reddit-like app that allows people to create posts based on certain topics. Posts are ranked based on its age and points, determined by number of upvotes and downvotes. Following a post notifies user of new activity of the post, such as a comment, via email.
 
 
 ## Features (pending)
 
-In order to run just pull the repository and run:
+extra feature: roles. 
+There are roles on this website. People with different roles have different degrees of authorization. 
 
-```bundle install```
+Admin: 
+  Can create topics, delete topics, as well as update or delete any posts or comments.
+  
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-  * Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 ## Configuration:
 
-MailGun will only authorize app to send to authorized recipients of the testing sandbox domain. Therefore, you must add tested recipients to your list of authorized recipients for your own domain. 
+Note:
+In testing, in order to send email to someone, you must authorize them to Mailgun's testing sandbox domain's authorized list of recipients.
 
-Use figaro install to gneerate a safe file to securely put mail gun key information. 
+Authorization for Mailgun:
+Use figaro install to generate a safe file to securely put Mailgun key authorization information (login, password). 
 ```figaro install```
 
 Bundle Gemfile:
-
 ```bundle install```
 
-Run server;
+Run server:
 ```rails s```
+
+
 
 
 
