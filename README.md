@@ -10,11 +10,15 @@ https://www.useloom.com/share/d256be4a424f4af680ce143fb78b1c7c
 
 ## Features
 
+#### Relevance Ranking
+ 
+  Posts in a topic are ranked based on time it was posted and the total number of points it has, which is determined by the number of upvotes and downvotes it has.
+
 #### Roles
 
-There are roles on this website. People with different roles have different degrees of authorization. 
+There are roles on this website. People with different roles have different degrees of authorization and can do more or less than the average typical user, who all have by default the role of a member.
 
-Admin:
+ Admin:
   ex: Admin User
   Can create public and private topics, delete topics, as well as update or delete any posts or comments. 
   
@@ -25,7 +29,6 @@ Member:
 #### Profile View
 
 Can view profile of another user, which displays his or her posts and comments.
-
 
 
 ## Configuration:
