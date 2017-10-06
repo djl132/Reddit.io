@@ -3,7 +3,7 @@
 ## Description
 A reddit-like app that allows people to create posts based on certain topics. Posts are ranked based on its age and points, determined by number of upvotes and downvotes. Following a post notifies user of new activity of the post, such as a comment, via email.
 
-## Demo:
+# Demo:
 
 https://www.useloom.com/share/d256be4a424f4af680ce143fb78b1c7c
 
@@ -31,24 +31,24 @@ Member:
 Can view profile of another user, which displays his or her posts and comments.
 
 
-## Configuration:
+## Configuration
 
 Note:
 In testing, in order to send email to someone, you must authorize them to Mailgun's testing sandbox domain's authorized list of recipients.
 
-Authorization for Mailgun:
+Authorization for Mailgun:<br />
 Use figaro install to generate a safe file to securely put Mailgun key authorization information (login, password). 
 ```figaro install```
 
-Bundle Gemfile:
+Bundle Gemfile:<br />
 ```bundle install```
 
-Create database and set admin(named Admin User) and dummy member(named Memeber User):
-```rake db:create```
-```rake db:migrate```
-```rake db:seed```
+Create database and set admin(named Admin User) and dummy member(named Memeber User):<br />
+```rake db:create```<br />
+```rake db:migrate```<br />
+```rake db:seed```<br />
 
-Run server:
+Run server:<br />
 ```rails s```
 
 
