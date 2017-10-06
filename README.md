@@ -3,7 +3,7 @@
 ## Description
 A reddit-like app that allows people to create posts based on certain topics. Posts are ranked based on its age and points, determined by number of upvotes and downvotes. Following a post notifies user of new activity of the post, such as a comment, via email.
 
-# Demo:
+## Demo:
 
 https://www.useloom.com/share/d256be4a424f4af680ce143fb78b1c7c
 
